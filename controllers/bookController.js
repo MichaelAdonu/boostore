@@ -59,42 +59,40 @@ exports.getBookById = async (req, res) => {
 
 // update a book by id
 exports.updateBookById = async (req, res) => {
-	res.send('update book');
-	// try {
-	// 	const book = await Book.findByIdAndUpdate(req.params.id, req.body, {
-	// 		new: true,
-	// 		runValidators: true,
-	// 	});
-	// 	res.status(200).json({
-	// 		status: 'success',
-	// 		data: {
-	// 			book,
-	// 		},
-	// 	});
-	// } catch (error) {
-	// 	res.status(400).json({
-	// 		status: 'fail',
-	// 		message: error,
-	// 	});
-	// }
+	try {
+		const book = await Book.findByIdAndUpdate(req.params.id, req.body, {
+			new: true,
+			runValidators: true,
+		});
+		res.status(200).json({
+			status: 'success',
+			data: {
+				book,
+			},
+			message: 'Book updated successfully',
+		});
+	} catch (error) {
+		res.status(400).json({
+			status: 'fail',
+			message: error,
+		});
+	}
 };
 
 // delete a book by id
 
 exports.deleteBookById = async (req, res) => {
-	res.send('delete book');
-	// try {
-	// 	const book = await Book.findByIdAndDelete(req.params.id);
-	// 	res.status(200).json({
-	// 		status: 'success',
-	// 		data: {
-	// 			book,
-	// 		},
-	// 	});
-	// } catch (error) {
-	// 	res.status(400).json({
-	// 		status: 'fail',
-	// 		message: error,
-	// 	});
-	// }
+	try {
+		const book = await Book.findByIdAndDelete(req.params.id);
+		res.status(200).json({
+			status: 'success',
+			data: null,
+			message: 'Book deleted successfully',
+		});
+	} catch (error) {
+		res.status(400).json({
+			status: 'fail',
+			message: error,
+		});
+	}
 };
